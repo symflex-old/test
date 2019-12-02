@@ -1,0 +1,23 @@
+doctrine:
+    dbal:
+        driver: 'pdo_pgsql'
+        charset: utf8
+        default_table_options:
+            charset: utf8
+            collate: utf8_general_ci
+        url: '%env(resolve:DATABASE_URL)%'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+        resolve_target_entities:
+            App\Model\Slave: App\Entity\Slave
+            App\Model\Master: App\Entity\Master
+            App\Model\Contract: App\Entity\Contract
